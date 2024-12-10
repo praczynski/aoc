@@ -29,15 +29,15 @@ func ReadFileToString(filename string) string {
 	return string(content)
 }
 
-func ReadFileToRuneGrid(filename string) ([][]rune, error) {
+func ReadFileToRuneGrid(filename string) [][]rune {
 	lines, err := ReadLines(filename)
 	if err != nil {
-		return nil, err
+		panic("File not found!")
 	}
 
 	var grid [][]rune
 	for _, line := range lines {
 		grid = append(grid, []rune(line))
 	}
-	return grid, nil
+	return grid
 }
