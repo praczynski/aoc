@@ -6,7 +6,7 @@ import (
 )
 
 // readLines reads lines from a file and returns them as a slice of strings
-func ReadLines(filename string) ([]string, error) {
+func ReadLines(filename string) []string {
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
@@ -18,7 +18,10 @@ func ReadLines(filename string) ([]string, error) {
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
-	return lines, scanner.Err()
+	if scanner.Err() != nil {
+		panic("")
+	}
+	return lines
 }
 
 func ReadFileToString(filename string) string {
